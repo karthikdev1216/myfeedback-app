@@ -88,6 +88,37 @@ def send_telegram_message(name, email, rating, experience):
         print(f"Error sending Telegram message: {e}")
         return False
 
+def send_discord_message(name, email, rating, experience):
+    webhook_url = os.getenv('DISCORD_WEBHOOK_URL')
+    if not webhook_url:
+        print("Discord Webhook URL missing. Skipping.")
+        return False
+
+    payload = {
+        "embeds": [{
+            "title": "🌟 New Student Feedback",
+            "color": 6524143, # Modern Purple
+            "fields": [
+                {"name": "👤 Name", "value": name, "inline": True},
+                {"name": "📧 Email", "value": email, "inline": True},
+                {"name": "⭐ Rating", "value": "★" * rating + "☆" * (5 - rating), "inline": False},
+                {"name": "📝 Experience", "value": experience, "inline": False}
+            ]
+        }]
+    }
+    
+    try:
+        response = requests.post(webhook_url, json=payload)
+        if response.ok:
+            print("Discord notification sent!")
+            return True
+        else:
+            print(f"Discord API Error: {response.status_code}")
+            return False
+    except Exception as e:
+        print(f"Error sending Discord message: {e}")
+        return False
+
 @app.route('/submit-feedback', methods=['POST'])
 @limiter.limit("5 per minute")
 def submit_feedback():
@@ -118,8 +149,9 @@ def submit_feedback():
     except Exception as e:
         return jsonify({"error": f"Database error: {str(e)}"}), 500
 
-    # Send Telegram Notification
+    # Send Notifications
     send_telegram_message(name, email, rating, experience)
+    send_discord_message(name, email, rating, experience)
 
     return jsonify({"message": "Feedback submitted successfully! Thank you."}), 201
 
