@@ -19,6 +19,7 @@ CORS(app)
 token = os.getenv('TELEGRAM_BOT_TOKEN')
 print(f"DEBUG: TELEGRAM_BOT_TOKEN loaded: {'Yes' if token else 'No'}")
 print(f"DEBUG: TELEGRAM_CHAT_ID loaded: {os.getenv('TELEGRAM_CHAT_ID')}")
+print(f"DEBUG: DISCORD_WEBHOOK_URL loaded: {'Yes' if os.getenv('DISCORD_WEBHOOK_URL') else 'No'}")
 
 # Rate Limiter Setup
 limiter = Limiter(
@@ -113,7 +114,7 @@ def send_discord_message(name, email, rating, experience):
             print("Discord notification sent!")
             return True
         else:
-            print(f"Discord API Error: {response.status_code}")
+            print(f"Discord API Error: {response.status_code} - {response.text}")
             return False
     except Exception as e:
         print(f"Error sending Discord message: {e}")
