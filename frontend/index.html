@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback | Voice Your Opinion</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs"></div>
+    
+    <main class="container">
+        <header class="header">
+            <h1>Student Feedback</h1>
+            <p>Your feedback helps us grow. Please share your experience with us.</p>
+        </header>
+
+        <form id="feedbackForm" class="feedback-card">
+            <div class="input-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="john@university.edu" required>
+            </div>
+
+            <div class="input-group">
+                <label>Overall Rating</label>
+                <div class="star-rating">
+                    <input type="radio" id="star5" name="rating" value="5" required />
+                    <label for="star5" title="5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="4" />
+                    <label for="star4" title="4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" />
+                    <label for="star3" title="3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="2" />
+                    <label for="star2" title="2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="1" />
+                    <label for="star1" title="1 star"></label>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="experience">Share Your Experience</label>
+                <textarea id="experience" name="experience" rows="4" placeholder="Tell us what you liked or what we can improve..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn">
+                <span class="btn-text">Submit Feedback</span>
+                <span class="loader"></span>
+            </button>
+        </form>
+
+        <div id="successMessage" class="message-card hidden">
+            <div class="icon-circle">✓</div>
+            <h2>Thank You!</h2>
+            <p>Your feedback has been received and shared with our team.</p>
+            <button onclick="resetForm()" class="btn-secondary">Submit Another</button>
+        </div>
+
+        <div id="errorMessage" class="error-toast hidden"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
