@@ -46,14 +46,16 @@ A full-stack web application for collecting student feedback with real-time Tele
 
 ## Deployment
 
-### Backend (Render / Railway)
-- Use the `backend` folder.
-- Set the start command to `gunicorn app:app`.
-- Add your environment variables in the platform's dashboard.
+### Backend (Render)
+1. **Create a New Web Service**: Connect your GitHub repository.
+2. **Root Directory**: Set this to `backend`.
+3. **Build Command**: `pip install -r requirements.txt`
+4. **Start Command**: `gunicorn app:app`
+5. **Environment Variables**: Add your `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in the Render Dashboard.
 
-### Frontend (Vercel / Netlify)
-- Deploy the `frontend` folder as a static site.
-- Update `API_URL` in `script.js` to point to your deployed backend.
+### Frontend (Vercel / Netlify / GitHub Pages)
+- Deploy the `frontend` folder.
+- **Important**: Update the `API_URL` in `frontend/script.js` to your new Render URL (e.g., `https://your-app.onrender.com/submit-feedback`).
 
 ## Telegram Bot Setup
 1. Message `@BotFather` on Telegram to create a bot and get the `TOKEN`.
