@@ -49,6 +49,9 @@ def init_db():
     conn.commit()
     conn.close()
 
+# Initialize database on startup
+init_db()
+
 # Telegram Integration
 def send_telegram_message(name, email, rating, experience):
     bot_token = os.getenv('TELEGRAM_BOT_TOKEN')
@@ -121,5 +124,4 @@ def submit_feedback():
     return jsonify({"message": "Feedback submitted successfully! Thank you."}), 201
 
 if __name__ == '__main__':
-    init_db()
     app.run(debug=True, port=5000)
