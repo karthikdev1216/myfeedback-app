@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/submit-feedback';
+const API_URL = 'https://myfeedback-app-1.onrender.com';
 
 const feedbackForm = document.getElementById('feedbackForm');
 const successMessage = document.getElementById('successMessage');
